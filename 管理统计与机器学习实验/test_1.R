@@ -7,7 +7,7 @@ nB <- 1000L
 muA <- 5.2
 muB <- 5.8
 
-shape <- 4 #负二相式形状参数
+shape <- 4 #负二项分布形状参数
 
 R <- 10000L #每种方法重抽样次数
 
@@ -42,6 +42,21 @@ observed <- meanB - meanA
 cat("观察均值差 B-A =", observed, "次/用户\n")
 relative_lift <- if (meanA > 0) observed / meanA else NA_real_
 cat("相对提升 =", 100 * relative_lift, "%（A 均值为零时无定义）\n")
+
+#两独立样本 t 检验
+##H0：A、B 两组总体均值相等；H1：A、B 两组总体均值不相等
+t_result <- t.test(B, A)
+t_statistic <- unname(t_result$statistic)
+p_t <- t_result$p.value
+cat("两独立样本 t 统计量 =", t_statistic, "\n")
+cat("两独立样本 t 检验 p 值 =", p_t, "\n")
+reject_t <- p_t < alpha
+cat("t 检验是否拒绝 H0 =", reject_t, "\n")
+if (reject_t) {
+  cat("t 检验结论：两组均值差异具有统计显著性。\n")
+} else {
+  cat("t 检验结论：两组均值差异不具有统计显著性。\n")
+}
 
 #置换 Bootstrap 检验
 ##混合无放回抽取
@@ -87,7 +102,7 @@ cat("Bootstrap 单侧", 100 * (1-alpha), "% 下界 =", one_sided_lower,
 bootstrap_se <- sd(bootstrap_diff)
 cat("Bootstrap 均值差标准误 =", bootstrap_se, "\n")
 
-#可视化local({
+#可视化
 local({
   old_par <- par(no.readonly = TRUE)
   on.exit(par(old_par), add = TRUE)
