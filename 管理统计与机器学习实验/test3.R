@@ -154,7 +154,8 @@ cat("\nPosterior predictive summary\n")
 print(prediction_summary, row.names = FALSE)
 
 # -------------------- 6. 诊断图与后验分布图 --------------------
-output_dir <- "D:/Users/hanjiaxuan/Desktop/课程内容/管理统计与机器学习/实验作业合集/Latex_paper"
+output_dir <- Sys.getenv("EXPERIMENT3_OUTPUT_DIR",
+                         unset = file.path(getwd(), "test3_results"))
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 plot_file <- file.path(output_dir, "Rplot_test3.jpeg")
 

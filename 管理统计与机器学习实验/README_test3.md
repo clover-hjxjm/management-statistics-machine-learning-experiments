@@ -53,7 +53,7 @@ sigma^2 ~ Inverse-Gamma(a0, b0)
 
 ## 运行方法
 
-在 RStudio 中打开 `test3.R`，确认脚本末尾的 `output_dir` 与本机报告文件夹一致，然后点击 **Source** 运行整份代码。
+在 RStudio 中打开 `test3.R`，将工作目录设为脚本所在目录，再点击 **Source**。图件默认保存到工作目录下的 `test3_results`。可在运行前通过 `EXPERIMENT3_OUTPUT_DIR` 环境变量指定其他目录。
 
 也可以在 R 控制台执行：
 

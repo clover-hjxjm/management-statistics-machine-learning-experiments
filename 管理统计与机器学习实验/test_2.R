@@ -1,7 +1,10 @@
 #电商用户满意度参数估计报告
 #读取数据文件地址
-data_dir <- "D:/Users/hanjiaxuan/Desktop/课程内容/管理统计与机器学习/作业二_参数估计"
-data_file <- file.path(data_dir, "ecommerce_survey.csv")
+data_file <- Sys.getenv("ECOMMERCE_SURVEY_FILE", unset = "ecommerce_survey.csv")
+if (!file.exists(data_file)) {
+  stop("请将 ecommerce_survey.csv 放在当前工作目录，或设置 ECOMMERCE_SURVEY_FILE。",
+       call. = FALSE)
+}
 
 #读取文件数据
 data <- read.csv(data_file, stringsAsFactors = FALSE)

@@ -1,0 +1,15 @@
+# R 会话文件
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+Rplots.pdf
+
+# 本地问卷与运行产物
+ecommerce_survey.csv
+test3_results/
+test4_results_final/
+test5_results/
+test6_results/
+test6_library/
+Latex_paper/figures_exp[456]/
